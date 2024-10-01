@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Geral */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #7e1088;
+            color: #fff;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            font-size: 2em; /* Ajuste o tamanho conforme necessário */
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .logo img {
+            height: 50px; /* Ajuste o tamanho do logo conforme necessário */
+            vertical-align: middle;
+        }
+
+        .nav-menu {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #f0e6ff;
+        }
+
+        .search-bar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar button {
+            background: url('https://img.icons8.com/material-outlined/24/search.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-left: -46px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cart {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            width: 24px;
+            height: 24px;
+            background: url('https://img.icons8.com/material-outlined/24/shopping-cart.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        .cart-counter {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff0000;
+            color: #fff;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            max-height: 300px;
+            margin: 20px 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            flex: 1 1 calc(50% - 20px); /* Ajustado para 2 produtos por linha */
+            box-sizing: border-box;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+            color: #000000;
+            font-size: 1.25em;
+        }
+
+        .product .sub-price {
+            text-decoration: line-through;
+            color: #ad0404;
+        }
+
+        .product .price {
+            font-weight: 700;
+            color: #000000;
+            margin: 5px 0;
+        }
+
+        .price-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #9e134d;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .price-button:hover {
+            background-color: #cf0e6e;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .social-links a {
+            margin: 0 10px;
+            color: #fff;
+        }
+
+        .newsletter {
+            background-color: #94064d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: calc(100% - 130px);
+            margin-right: 10px;
+        }
+
+        .newsletter input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #920969;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .newsletter input[type="submit"]:hover {
+            background-color: #2b2b2b;
+        }
+
+        /* Consultas de Mídia para Dispositivos Móveis */
+        @media (max-width: 768px) {
+            .search-bar input {
+                width: calc(100% - 46px);
+            }
+
+            .search-bar button {
+                margin-left: -36px;
+            }
+
+            .newsletter input[type="email"] {
+                width: calc(100% - 120px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                text-align: center;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                margin: 0;
+            }
+
+            .search-bar {
+                margin-top: 10px;
+                flex-direction: column;
+            }
+
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-bar button {
+                margin-left: 0;
+            }
+
+            .newsletter input[type="email"] {
+                width: calc(100% - 100px);
+            }
+
+            .product {
+                flex: 1 1 calc(50% - 20px); /* Ajustado para 2 produtos por linha */
+            }
+            
+
+            .slider {
+                max-height: 200px;
+            }
+        }
+
+        .cart-items {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px;
+            display: none; /* Inicialmente escondido */
+        }
+
+        .cart-items h2 {
+            margin-top: 0;
+        }
+
+        .cart-items ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MIX MANIA</h1>
+    <div class="cart">
+        <div class="cart-icon"></div>
+        <div class="cart-counter">0</div>
+    </div>
+</header>
+
+<nav class="nav-menu">
+    <a href="index.html">Início</a>
+    <a href="produtos.html">Produtos</a>
+    <a href="promocoes.html">Promoções</a>
+    <a href="contato.html">Contato</a>
+</nav>
+
+
+<div class="slider">
+    <img src="https://export-download.canva.com/VPyZA/DAGSXbVPyZA/5/0/0001-3139451346468574664.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJHKNGJLC2J7OGJ6Q%2F20241001%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241001T180125Z&X-Amz-Expires=18032&X-Amz-Signature=ada754daae4c19a6e7c008c5fa24779d2fe5b9398d49461da5c6e09989d50de8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27Design%2520sem%2520nome.jpg&response-expires=Tue%2C%2001%20Oct%202024%2023%3A01%3A57%20GMT" alt="Banner">
+</div>
+
+</div>
+<div class="product-grid">
+    <div class="product">
+        <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lxb4euvsqy0vab.webp" alt="Sandália Baby">
+        <h3>Kit Infantil Stitch Sandália e Bolsa Feminina</h3>
+        <span class="sub-price">R$ 89,00</span>
+        <div class="price">R$ 65,90</div>
+        <a href="checkout.html" class="price-button">Comprar</a>
+    </div>
+    <div class="product">
+        <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-ly19ac41khj3ad.webp" alt="sandalia Infantil">
+        <h3>Sandália Menina Infantil  Leve Macia Confortável</h3>
+        <span class="sub-price">R$ 79,00</span>
+        <div class="price">R$ 45,90</div>
+        <a href="" class="price-button">Comprar</a>
+    </div>
+    <div class="product">
+        <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-ls7mxvz50d9g0d.webp" alt="Papete Menina">
+        <h3>Sandália papete Menina Mini Baby Blogueirinha</h3>
+        <span class="sub-price">R$ 89,00</span>
+        <div class="price">R$ 43,90</div>
+        <a href="" class="price-button">Comprar</a>
+    </div>
+    <div class="product">
+        <img src="https://down-br.img.susercontent.com/file/sg-11134301-7rceb-lt5gssef408ae3@resize_w450_nl.webp" alt="Chinelo Unissex">
+        <h3>Chaveiro Stitch Rosa</h3>
+        <span class="sub-price">R$ 14,90</span>
+        <div class="price">R$ 9,90</div>
+        <a href="" class="price-button">Comprar</a>
+    </div>
+<div class="product">
+    <img src="https://m.media-amazon.com/images/I/517sg0ZNemL._AC_SX679_.jpg" alt="Carrinho Unissex">
+    <h3>Huggies Extra Suave - Shampoo Infantil, 600ml</h3>
+    <span class="sub-price">R$ 49,00</span>
+    <div class="price">R$ 29,99</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://m.media-amazon.com/images/I/51zpdZ1GL6L._AC_SX425_.jpg" alt="Carrinho Unissex">
+    <h3>Lola Cosmetics Densidade Máscara 230 G</h3>
+    <span class="sub-price">R$ 55,00</span>
+    <div class="price">R$ 29,99</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://m.media-amazon.com/images/I/71ts4QpNvGL._AC_SX425_.jpg" alt="Carrinho Unissex">
+    <h3>MamyPoko Lenços Umedecidos Dia&Noite 200 Unidades</h3>
+    <span class="sub-price">R$ 14,50</span>
+    <div class="price">R$ 8,99</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://down-br.img.susercontent.com/file/sg-11134301-7rdxc-lxjb66zny25ca2.webp" alt="Carrinho Unissex">
+    <h3>Bola De Cão Móvel Automática USB Treinamento Elétrica Inteligente Para Gato </h3>
+    <span class="sub-price">R$ 45,00</span>
+    <div class="price">R$ 21,99</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lymi1zoepv2t6b.webp" alt="massinha Unissex">
+    <h3>Kit De Massinha De Modelar Infantil Tutti frutti</h3>
+    <span class="sub-price">R$ 59,00</span>
+    <div class="price">R$ 36,50</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://down-br.img.susercontent.com/file/e21aa75c967ff0e14f9a427ae3ab2987.webp" alt="Carrinho Unissex">
+    <h3>Super Herói Homem-Aranha</h3>
+    <span class="sub-price">R$ 49,99</span>
+    <div class="price">R$ 24,95</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://down-br.img.susercontent.com/file/a56c3a31e2c4c548f64d788f54410809.webp" alt="Carrinho Unissex">
+    <h3>Super Herói Thanos </h3>
+    <span class="sub-price">R$ 109,00</span>
+    <div class="price">R$ 25,18</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://down-br.img.susercontent.com/file/sg-11134201-7rceu-lsjby619dtj66c.webp" alt="Carrinho Unissex">
+    <h3>Quebra-cabeça de madeira 9 peças </h3>
+    <span class="sub-price">R$ 109,00</span>
+    <div class="price">R$ 49,99</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://m.media-amazon.com/images/I/61ZmOBGPDYL._AC_SX425_.jpg" alt="Carrinho Unissex">
+    <h3>Salon Line, Gelatina Capilar, ToDeCacho, Super Definição 550g </h3>
+    <span class="sub-price">R$ 28,99</span>
+    <div class="price">R$ 25,90</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+<div class="product">
+    <img src="https://m.media-amazon.com/images/I/616GAmsvgCL._AC_SX425_.jpg" alt="Chinelo Unissex">
+    <h3>Máscara Morte Súbita</h3>
+    <span class="sub-price">R$ 59,00</span>
+    <div class="price">R$ 46,90</div>
+    <a href="" class="price-button">Comprar</a>
+</div>
+</div>
+
+
+<div class="newsletter">
+    <h2>Receba Ofertas Exclusivas!</h2>
+    <form action="#" method="post">
+        <input type="email" placeholder="Seu e-mail" required>
+        <input type="submit" value="Inscreva-se">
+    </form>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Mix Mania - Todos os direitos reservados.</p>
+    <div class="social-links">
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">Twitter</a>
+    </div>
+    <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a></p>
+</footer>
+
+</body>
+</html>
